@@ -14,8 +14,8 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     debugger;
     this.signalrservice.startConnection();
-    this.signalrservice.addCoinPriceListener();
-    this.startHttpRequest();
+   // this.signalrservice.addCoinPriceListener();
+   // this.startHttpRequest();
   }
 
   private _startHttpRequest = () => {

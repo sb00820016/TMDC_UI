@@ -21,29 +21,23 @@ data:any;
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
       }).build();
-
-    this._hubConnection.start()
-      .then(() => console.log('connection started'))
+      this._hubConnection.serverTimeoutInMilliseconds = 60000;
+      this._hubConnection.start().then(()=>{
+        debugger;
+        console.log("connection started");
+        debugger;
+        setInterval(()=>{
+          this.addCoinPriceListener();
+        },1000)
+      })
       .catch(error => console.log('Error while creating connection:' + error));
   }
 
   public addCoinPriceListener = () => {
-    this._hubConnection.on('getCoinPrice', (response) => {
-      try
-      {
-      debugger
-      this.data = response;
-      console.log("Response is" + response.responseObject);
-      //this.convertDateToTimeStamp();
-      }
-      catch
-      {
-        console.log("Error is ");
-         console.error();
-        
-      }
-      
-    })
+    debugger;
+    this._hubConnection.invoke("get").then(data=>{
+      console.log(data);
+    }).catch(err=>console.error(err));
   }
 
 }
