@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import * as signalR from '@microsoft/signalr';
+import {  HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 
 @Injectable({
   providedIn: 'root'
@@ -7,15 +8,19 @@ import { HttpClient, HubConnection, HubConnectionBuilder, LogLevel } from '@micr
 export class SignalRHubService implements OnInit{
 data:any;
   private _hubConnection!: HubConnection;
-  constructor(private _httpClient: HttpClient) { }
+  constructor() { }
 
   ngOnInit(): void {
-    // this.connect();
+   // this.addCoinPriceListener();
   }
 
   public startConnection() {
+    debugger;
     this._hubConnection = new HubConnectionBuilder()
-      .withUrl('https://localhost:44316/coinPrice').build();
+      .withUrl('https://localhost:44395/TMDCConnect',{
+        skipNegotiation: true,
+        transport: signalR.HttpTransportType.WebSockets
+      }).build();
 
     this._hubConnection.start()
       .then(() => console.log('connection started'))
@@ -24,11 +29,19 @@ data:any;
 
   public addCoinPriceListener = () => {
     this._hubConnection.on('getCoinPrice', (response) => {
+      try
+      {
       debugger
       this.data = response;
-      console.log(response);
+      console.log("Response is" + response.responseObject);
       //this.convertDateToTimeStamp();
-     
+      }
+      catch
+      {
+        console.log("Error is ");
+         console.error();
+        
+      }
       
     })
   }
