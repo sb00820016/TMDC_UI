@@ -8,7 +8,7 @@ import {  HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signa
 export class SignalRHubService implements OnInit{
 data:any;
   private _hubConnection!: HubConnection;
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit(): void {
    // this.addCoinPriceListener();
