@@ -9,15 +9,9 @@ import { SignalRHubService } from '../signal-r-hub.service';
 })
 export class HomepageComponent implements OnInit {
   private _hubConnection!: HubConnection;
-  constructor(public signalrservice : SignalRHubService,private http: HttpClient) { }
   data:any;
-  ngOnInit(): void {
-    debugger;
-    this.signalrservice.startConnection();
-   // this.signalrservice.addCoinPriceListener();
-   // this.startHttpRequest();
-  }
-
+  constructor(public signalrservice : SignalRHubService,private http: HttpClient) { }
+ 
   private _startHttpRequest = () => {
     this.http.get('https://localhost:44395/api/TMDC')
       .subscribe(res => {
@@ -29,5 +23,13 @@ export class HomepageComponent implements OnInit {
   public set startHttpRequest(value) {
     this._startHttpRequest = value;
   }
+
+  ngOnInit(): void {
+    debugger;
+    this.signalrservice.startConnection();
+    this.signalrservice.addCoinPriceListener();
+    this.startHttpRequest();
+  }
+
 
 }

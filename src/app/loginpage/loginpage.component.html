@@ -1,0 +1,60 @@
+ <div class="login-image container"></div>
+<div class="loginForm container">
+<div class="row">
+    <div class="col-md-6">
+        
+            <div class="card">
+                <div class="text-center" style="    background: antiquewhite;
+                padding-top: 20px;
+                padding-bottom: 2px;box-shadow:2px 2px 12px rgba(0, 0, 0, 0.2)">
+                    <!-- <h3 id="login-header" style="padding-bottom: 30px;">TMDC Hub Login</h3> -->
+                    <div class="logo"></div>
+                </div>
+                <form style="background: chocolate;
+                padding: 25px;
+                color: beige;box-shadow:2px 2px 12px rgba(0, 0, 0, 0.2)">
+                    <form [formGroup]="loginform" (ngSubmit)="login()">
+                        <div class="mb-3">
+                          <h3 style="text-align: center;
+                          padding-bottom: 24px;">TMDC Hub Login</h3>
+                          <span style="    position: absolute;" class="material-symbols-outlined">
+                            contact_page
+                            </span>
+                          <label style="    margin-left: 27px;
+                          margin-top: 3px;" for="exampleInputEmail1" class="form-label">Username</label>
+                          <input style="border-bottom: 1px solid darkgrey;
+                          border-right: none;
+                          border-top: none;
+                          border-left: none;
+                      " type="text" placeholder="Enter username" formControlName="username" class="form-control" id="exampleInputEmail1">
+                        
+                        </div>
+                        <div class="mb-3">
+                          <span style="    position: absolute;" class="material-symbols-outlined">
+                            key
+                            </span>
+                          <label style="    margin-left: 27px;
+                          margin-top: 3px;" for="exampleInputPassword1" class="form-label">Password</label>
+                          <input style="border-bottom: 1px solid darkgrey;
+                          border-right: none;
+                          border-top: none;
+                          border-left: none;
+                      " type="password" placeholder="Enter password" formControlName="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                       
+                        <button style="    margin-left: 81%;
+                        margin-top: 21px;
+                        margin-bottom: 19px;
+                        padding-left: 30px;
+                        padding-right: 30px;
+                        border-radius: 19px;
+                        background: wheat;
+                        color: black;
+                        font-weight: 600;" [disabled]="!loginform.valid" type="submit" class="btn btn-primary">Login</button>
+                      </form>
+                </form>
+            </div>
+        
+    </div>
+</div>
+</div>
