@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class LoginpageComponent implements OnInit {
  public loginform!:FormGroup;
  data:any;
+ id: any;
   constructor(private formBuilder:FormBuilder,private router:Router,private httpClient:HttpClient) { }
 
   ngOnInit(): void {
@@ -19,26 +20,45 @@ export class LoginpageComponent implements OnInit {
         username:['',Validators.required],
         password:['',Validators.required]
       }
+
     )
   }
   get loginControl() { return this.loginform.controls; }
-  userName!: string;
-  passWord!:string;
+  username!: string;
+  password!:string;
   login()
   {
+    debugger;
     console.log(this.loginControl['username'].value,this.loginControl['password'].value);
     if(this.loginform.invalid)
     {
       return;
     }
-    this.router.navigate(['home']);
-    this.userName = this.loginControl['username'].value ;
-    this.passWord = this.loginControl['password'].value ;
-    
-    this.httpClient.post<any>('https://reqres.in/api/posts',[this.userName,this.passWord]).subscribe(data => {
-        this.userName = this.loginControl['username'].value ;
-        this.passWord = this.loginControl['password'].value ;
+  //  this.router.navigate(['home']);
+  this.username = this.loginControl['username'].value ;
+    this.password = this.loginControl['password'].value ;
+   
+    this.getMyBlog(this.username,this.password).subscribe(data => {
+      debugger;
+    console.log(data);
+    if(data.isSuccess == true)
+      {
+        this.router.navigate(['home']);
+      }
+      else
+      {
+        console.log(data.responseMessage)
+      }
+        this.username = this.loginControl['username'].value ;
+        this.password = this.loginControl['password'].value ;
   });
+
+
+}
+
+public getMyBlog(username : string, password:string): Observable<any> {
+  debugger;
+  return this.httpClient.post<any>('https://localhost:44395/api/Authentication/login', { username, password });
 }
 }
 

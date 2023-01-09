@@ -13,7 +13,7 @@
                 <form style="background: chocolate;
                 padding: 25px;
                 color: beige;box-shadow:2px 2px 12px rgba(0, 0, 0, 0.2)">
-                    <form [formGroup]="loginform" (ngSubmit)="login()">
+                    <form [formGroup]="loginform" (ngSubmit)="login()" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                           <h3 style="text-align: center;
                           padding-bottom: 24px;">TMDC Hub Login</h3>

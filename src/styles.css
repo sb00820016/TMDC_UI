@@ -116,7 +116,7 @@ div.online-indicator {
   }
   .logo
   {
-    background-image: url(D:\TMDC_Angular_UI\TMDC\src\techm_logo.png);
+    /* background-image: url(D:\WorkSpaceApi\TMDC_UI\TMDC_UI\src\techm_logo.png); */
     background-repeat: no-repeat;
     background-size: contain;
     background-attachment: fixed;

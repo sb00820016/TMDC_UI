@@ -8,7 +8,7 @@ import {  HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signa
 export class SignalRHubService implements OnInit{
 data:any;
   private _hubConnection!: HubConnection;
-  constructor( ) { }
+  constructor() { }
 
   ngOnInit(): void {
    // this.addCoinPriceListener();
@@ -23,12 +23,16 @@ data:any;
       }).build();
       this._hubConnection.serverTimeoutInMilliseconds = 60000;
       this._hubConnection.start().then(()=>{
-        debugger;
-        console.log("connection started");
-        debugger;
-        setInterval(()=>{
-          this.addCoinPriceListener();
-        },1000)
+         debugger;
+         console.log("connection started");
+        // debugger;
+        // setInterval(()=>{
+        //   this.addCoinPriceListener();
+        // },1000)
+        this._hubConnection.on("ReceiveMessage",function(message) {
+          debugger;
+          console.log(message);
+          });
       })
       .catch(error => console.log('Error while creating connection:' + error));
   }
