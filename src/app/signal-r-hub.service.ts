@@ -17,7 +17,7 @@ data:any;
   public startConnection() {
     debugger;
     this._hubConnection = new HubConnectionBuilder()
-      .withUrl('https://localhost:44395/TMDCConnect',{
+      .withUrl('https://localhost:44395/Connect',{
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
       }).build();
@@ -25,7 +25,7 @@ data:any;
       this._hubConnection.start().then(()=>{
          debugger;
          console.log("connection started");
-        // debugger;
+        debugger;
         // setInterval(()=>{
         //   this.addCoinPriceListener();
         // },1000)
@@ -37,11 +37,11 @@ data:any;
       .catch(error => console.log('Error while creating connection:' + error));
   }
 
-  public addCoinPriceListener = () => {
-    debugger;
-    this._hubConnection.invoke("get").then(data=>{
-      console.log(data);
-    }).catch(err=>console.error(err));
-  }
+  // public addCoinPriceListener = () => {
+  //   debugger;
+  //   this._hubConnection.invoke("get").then(data=>{
+  //     console.log(data);
+  //   }).catch(err=>console.error(err));
+  // }
 
 }

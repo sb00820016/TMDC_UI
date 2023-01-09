@@ -16,6 +16,9 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     debugger;
     this.signalrservice.startConnection();
+    this.http.get("https://localhost:44395/api/TMDC/GetAllServer").subscribe(data =>
+      (data)
+    );
    // this.signalrservice.addCoinPriceListener();
     //this.startHttpRequest();
   }
